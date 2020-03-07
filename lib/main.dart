@@ -1,6 +1,6 @@
-import 'package:creativetodo/pages/home.dart';
+import 'package:creativetodo/pages/app.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(
-      Home(),
+      App(),
     );

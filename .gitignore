@@ -10,6 +10,7 @@
 .svn/
 .metadata
 .flutter-plugins-dependencies
+pubspec.lock
 
 # IntelliJ related
 *.iml
