@@ -5,11 +5,15 @@ class EmptyTodoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-        16.0,
-      )),
+        borderRadius: BorderRadius.circular(
+          16.0,
+        ),
+      ),
       elevation: 6.0,
-      margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+      margin: const EdgeInsets.symmetric(
+        vertical: 16.0,
+        horizontal: 8.0,
+      ),
       child: Material(
         borderRadius: BorderRadius.circular(
           16.0,
@@ -18,7 +22,7 @@ class EmptyTodoCard extends StatelessWidget {
         child: InkWell(
           onTap: () => {},
           child: Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               vertical: 16.0,
               horizontal: 16.0,
             ),

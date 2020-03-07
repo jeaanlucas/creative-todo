@@ -1,5 +1,6 @@
 import 'package:creativetodo/widgets/empty_todo_card.dart';
 import 'package:creativetodo/widgets/gradient_background.dart';
+import 'package:creativetodo/widgets/todo_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -95,7 +96,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               child: PageView.builder(
                 itemCount: 1,
                 controller: _pageController,
-                itemBuilder: (BuildContext _, int index) => EmptyTodoCard(),
+                itemBuilder: (BuildContext _, int index) =>
+//                    EmptyTodoCard(),
+                    TodoCard(),
               ),
             ),
             SizedBox(
