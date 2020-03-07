@@ -10,7 +10,6 @@
 .svn/
 .metadata
 .flutter-plugins-dependencies
-pubspec.lock
 
 # IntelliJ related
 *.iml
@@ -71,6 +70,7 @@ pubspec.lock
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 **/ios/Podfile
+**/ios/Podfile.lock
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
