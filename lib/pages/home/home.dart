@@ -1,8 +1,13 @@
+import 'package:creativetodo/database/models/person.dart';
+import 'package:creativetodo/widgets/custom_drawer.dart';
+import 'package:creativetodo/widgets/custom_loading.dart';
 import 'package:creativetodo/widgets/empty_todo_card.dart';
 import 'package:creativetodo/widgets/gradient_background.dart';
 import 'package:creativetodo/widgets/todo_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
   @override
@@ -14,6 +19,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Animation<double> _animation;
   PageController _pageController;
   int _pageIndex = 0;
+  Person _person = Person();
 
   @override
   void initState() {
@@ -33,6 +39,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       initialPage: 0,
       viewportFraction: 0.8,
     );
+
+    _createPerson();
+  }
+
+  void _createPerson() async {
+    final response = await http.get('https://randomuser.me/api/');
+
+    final json = convert.jsonDecode(response.body)['results'].first;
+    _person = Person.fromJson(json);
+    setState(() {});
   }
 
   String get diaAtual => DateFormat('EEEE').format(DateTime.now());
@@ -40,6 +56,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   String get mesAtual => DateFormat('MMM').format(DateTime.now());
 
   String get dataAtual => DateFormat('d').format(DateTime.now());
+
+  Future<Person> get person async => await _person;
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +69,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       color: Colors.blueAccent,
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        drawer: CustomDrawer(
+          person: _person,
+        ),
         appBar: AppBar(
           title: Text(
-            'Creative TODO',
+            'TODO',
           ),
           centerTitle: true,
           elevation: 0.0,
@@ -98,7 +119,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 controller: _pageController,
                 itemBuilder: (BuildContext _, int index) =>
 //                    EmptyTodoCard(),
-                    TodoCard(),
+                TodoCard(),
               ),
             ),
             SizedBox(
